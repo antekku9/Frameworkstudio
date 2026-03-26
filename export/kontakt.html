@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt - Antoni Kuran</title>
+  <meta name="description" content="Skontaktuj się ze mną - napisz lub zadzwoń, aby omówić Twój projekt.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo">
+        Antoni <span>Kuran</span>
+      </div>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="oferta.html">Oferta</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumbs">
+    <a href="index.html">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      Strona Główna
+    </a>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+    <span class="current">Kontakt</span>
+  </nav>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="contact-header">
+      <h2>Napisz do mnie</h2>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h3>Dane Kontaktowe</h3>
+        <p>
+          Zazwyczaj odpowiadam w ciągu 24 godzin (od poniedziałku do piątku).
+          Chętnie porozmawiam o Twoim projekcie i przygotuję wycenę.
+        </p>
+
+        <p>
+          <strong>Telefon:</strong><br>
+          <a href="tel:+48123456789">+48 123 456 789</a>
+        </p>
+        <p>
+          <strong>E-mail:</strong><br>
+          <a href="mailto:info@frameworkstudio.pl">info@frameworkstudio.pl</a>
+        </p>
+
+        <div style="margin-top: 2rem;">
+          <h3>Social Media</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/frameworkstudio/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <span style="color: #666;">|</span>
+            <a href="https://www.linkedin.com/in/antoni-kuran/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <span style="color: #666;">|</span>
+            <a href="https://www.facebook.com/frameworkstudio/" target="_blank" rel="noopener noreferrer">Facebook</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Imię i Nazwisko</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Adres E-mail</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Temat (np. Wycena, Współpraca)</label>
+            <input type="text" id="subject" name="subject">
+          </div>
+
+          <div class="form-group">
+            <label for="message">Treść Wiadomości</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">
+            Wyślij Wiadomość
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section">
+    <div class="testimonials-container">
+      <h2>Co mówią klienci</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <p class="testimonial-text">"Profesjonalizm na najwyższym poziomie! Packshoty produktów wyglądają niesamowicie, a sprzedaż wzrosła o 40% po wdrożeniu nowych zdjęć."</p>
+          <div class="testimonial-author">
+            <div class="author-name">Anna Kowalska</div>
+            <div class="author-company">Boutique Fashion</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <p class="testimonial-text">"Antoni świetnie rozumie potrzeby e-commerce. Wizualizacje 3D przekroczyły nasze oczekiwania. Polecam każdemu!"</p>
+          <div class="testimonial-author">
+            <div class="author-name">Marek Nowak</div>
+            <div class="author-company">TechGadgets</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <svg class="star" width="20" height="20" viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <p class="testimonial-text">"Kompleksowa obsługa brandingu i fotografii produktowej. Szybko, sprawnie i w bardzo dobrej cenie. Na pewno wrócimy z kolejnymi projektami."</p>
+          <div class="testimonial-author">
+            <div class="author-name">Katarzyna Wiśniewska</div>
+            <div class="author-company">GreenBeauty Cosmetics</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Antoni Kuran - Grafik & Fotograf. Wszelkie prawa zastrzeżone.</p>
+    <p>Design & Development: <a href="mailto:info@frameworkstudio.pl">Framework Studio</a></p>
+  </footer>
+
+  <!-- Back to Top -->
+  <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </div>
+
+  <!-- Main JavaScript -->
+  <script>
+    // Handle form submission
+    function handleSubmit(e) {
+      e.preventDefault();
+      
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+      };
+
+      // Create mailto link
+      const mailtoLink = `mailto:info@frameworkstudio.pl?subject=${encodeURIComponent(
+        formData.subject || 'Wiadomość z Framework Studio'
+      )}&body=${encodeURIComponent(
+        `Imię: ${formData.name}\nE-mail: ${formData.email}\n\nTreść:\n${formData.message}`
+      )}`;
+
+      window.location.href = mailtoLink;
+    }
+
+    // Auto-fill subject from URL parameter
+    window.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const subject = urlParams.get('subject');
+      if (subject) {
+        document.getElementById('subject').value = decodeURIComponent(subject);
+      }
+    });
+
+    // Scroll to top
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Show/hide back to top button
+    window.addEventListener('scroll', function() {
+      const backToTop = document.getElementById('backToTop');
+      
+      if (window.scrollY > 500) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+  </script>
+</body>
+</html>
