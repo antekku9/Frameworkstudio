@@ -22,6 +22,6 @@ export const router = createBrowserRouter([
     Component: KontaktPage,
   },
 ], {
-  // DODAJ TEN OBIEKT JAKO DRUGI ARGUMENT:
-  basename: "/Frameworkstudio" 
+ 
+  basename: import.meta.env.BASE_URL 
 });
