@@ -22,6 +22,6 @@ export const router = createBrowserRouter([
     Component: KontaktPage,
   },
 ], {
- 
-  basename: import.meta.env.BASE_URL 
+  
+  basename: import.meta.env.BASE_URL === './' ? '/' : import.meta.env.BASE_URL
 });
