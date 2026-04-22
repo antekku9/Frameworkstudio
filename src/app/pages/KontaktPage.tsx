@@ -15,7 +15,7 @@ export function KontaktPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:info@frameworkstudio.pl?subject=${encodeURIComponent(
+    const mailtoLink = `antekku9@gmail.com?subject=${encodeURIComponent(
       formData.subject || 'Wiadomość z Framework Studio'
     )}&body=${encodeURIComponent(
       `Imię: ${formData.name}\nE-mail: ${formData.email}\n\nTreść:\n${formData.message}`
