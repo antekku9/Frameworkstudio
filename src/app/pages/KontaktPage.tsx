@@ -13,14 +13,38 @@ export function KontaktPage() {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `antekku9@gmail.com?subject=${encodeURIComponent(
-      formData.subject || 'Wiadomość z Framework Studio'
-    )}&body=${encodeURIComponent(
-      `Imię: ${formData.name}\nE-mail: ${formData.email}\n\nTreść:\n${formData.message}`
-    )}`;
-    window.location.href = mailtoLink;
+    setStatus('sending');
+
+    try {
+      // Wysyłanie danych metodą AJAX (podobnie jak w projekcie Conner)
+      const response = await fetch('https://formsubmit.co/ajax/antekku9@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || 'Wiadomość z Framework Studio',
+          message: formData.message,
+          _subject: "Nowa wiadomość ze strony Framework Studio" // Temat maila jaki Ty otrzymasz
+        })
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -50,14 +74,14 @@ export function KontaktPage() {
 
           <p className="mb-4">
             <strong>Telefon:</strong>{' '}
-            <a href="tel:+48123456789" className="text-[#222] no-underline font-medium hover:text-[#c5a059] transition-colors">
-              +48 123 456 789
+            <a href="tel:+48575996200" className="text-[#222] no-underline font-medium hover:text-[#c5a059] transition-colors">
+              +48 575 996 200
             </a>
           </p>
           <p className="mb-4">
             <strong>E-mail:</strong>{' '}
-            <a href="mailto:info@frameworkstudio.pl" className="text-[#222] no-underline font-medium hover:text-[#c5a059] transition-colors">
-              info@frameworkstudio.pl
+            <a href="mailto:antekku9@gmail.com" className="text-[#222] no-underline font-medium hover:text-[#c5a059] transition-colors">
+              antekku9@gmail.com
             </a>
           </p>
 
@@ -66,105 +90,94 @@ export function KontaktPage() {
               Social Media
             </h3>
             <div className="flex gap-4 flex-wrap">
-              <a
-                href="https://www.instagram.com/frameworkstudio/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#222] no-underline font-medium hover:text-[#c5a059] transition-colors"
-              >
-                Instagram
-              </a>
+              <a href="https://www.instagram.com/frameworkstudio/" target="_blank" rel="noopener noreferrer" className="text-[#222] no-underline font-medium hover:text-[#c5a059] transition-colors">Instagram</a>
               <span className="text-[#666]">|</span>
-              <a
-                href="https://www.linkedin.com/in/antoni-kuran/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#222] no-underline font-medium hover:text-[#c5a059] transition-colors"
-              >
-                LinkedIn
-              </a>
+              <a href="https://www.linkedin.com/in/antoni-kuran/" target="_blank" rel="noopener noreferrer" className="text-[#222] no-underline font-medium hover:text-[#c5a059] transition-colors">LinkedIn</a>
               <span className="text-[#666]">|</span>
-              <a
-                href="https://www.facebook.com/frameworkstudio/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#222] no-underline font-medium hover:text-[#c5a059] transition-colors"
-              >
-                Facebook
-              </a>
+              <a href="https://www.facebook.com/frameworkstudio/" target="_blank" rel="noopener noreferrer" className="text-[#222] no-underline font-medium hover:text-[#c5a059] transition-colors">Facebook</a>
             </div>
           </div>
         </div>
 
         {/* Contact Form */}
         <div className="bg-[#f9f9f9] p-8 rounded-[5px]">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-5">
-              <label htmlFor="name" className="block mb-2 font-semibold text-[0.9rem] uppercase">
-                Imię i Nazwisko
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full p-3 border border-[#ddd] rounded font-['Montserrat'] text-[0.9rem] focus:border-[#c5a059] focus:outline-none transition-colors"
-              />
+          {status === 'success' ? (
+            <div className="text-center py-10">
+              <h3 className="text-[#c5a059] text-2xl font-bold mb-2">✅ Wiadomość wysłana!</h3>
+              <p className="text-[#666]">Dziękuję za kontakt. Odpowiem najszybciej, jak to możliwe.</p>
+              <button 
+                onClick={() => setStatus('idle')}
+                className="mt-5 text-sm underline text-[#c5a059] cursor-pointer"
+              >
+                Wyślij kolejną wiadomość
+              </button>
             </div>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <div className="mb-5">
+                <label htmlFor="name" className="block mb-2 font-semibold text-[0.9rem] uppercase">Imię i Nazwisko</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full p-3 border border-[#ddd] rounded font-['Montserrat'] text-[0.9rem] focus:border-[#c5a059] focus:outline-none transition-colors"
+                />
+              </div>
 
-            <div className="mb-5">
-              <label htmlFor="email" className="block mb-2 font-semibold text-[0.9rem] uppercase">
-                Adres E-mail
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full p-3 border border-[#ddd] rounded font-['Montserrat'] text-[0.9rem] focus:border-[#c5a059] focus:outline-none transition-colors"
-              />
-            </div>
+              <div className="mb-5">
+                <label htmlFor="email" className="block mb-2 font-semibold text-[0.9rem] uppercase">Adres E-mail</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full p-3 border border-[#ddd] rounded font-['Montserrat'] text-[0.9rem] focus:border-[#c5a059] focus:outline-none transition-colors"
+                />
+              </div>
 
-            <div className="mb-5">
-              <label htmlFor="subject" className="block mb-2 font-semibold text-[0.9rem] uppercase">
-                Temat (np. Wycena, Współpraca)
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                className="w-full p-3 border border-[#ddd] rounded font-['Montserrat'] text-[0.9rem] focus:border-[#c5a059] focus:outline-none transition-colors"
-              />
-            </div>
+              <div className="mb-5">
+                <label htmlFor="subject" className="block mb-2 font-semibold text-[0.9rem] uppercase">Temat</label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="w-full p-3 border border-[#ddd] rounded font-['Montserrat'] text-[0.9rem] focus:border-[#c5a059] focus:outline-none transition-colors"
+                />
+              </div>
 
-            <div className="mb-5">
-              <label htmlFor="message" className="block mb-2 font-semibold text-[0.9rem] uppercase">
-                Treść Wiadomości
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows={6}
-                className="w-full p-3 border border-[#ddd] rounded font-['Montserrat'] text-[0.9rem] resize-y min-h-[150px] focus:border-[#c5a059] focus:outline-none transition-colors"
-              />
-            </div>
+              <div className="mb-5">
+                <label htmlFor="message" className="block mb-2 font-semibold text-[0.9rem] uppercase">Treść Wiadomości</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={6}
+                  className="w-full p-3 border border-[#ddd] rounded font-['Montserrat'] text-[0.9rem] resize-y min-h-[150px] focus:border-[#c5a059] focus:outline-none transition-colors"
+                />
+              </div>
 
-            <button
-              type="submit"
-              className="inline-block px-6 py-3 bg-[#c5a059] text-white border-none rounded cursor-pointer font-bold uppercase tracking-wider transition-all hover:bg-[#a8874f]"
-            >
-              Wyślij Wiadomość
-            </button>
-          </form>
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className="inline-block px-6 py-3 bg-[#c5a059] text-white border-none rounded cursor-pointer font-bold uppercase tracking-wider transition-all hover:bg-[#a8874f] disabled:opacity-50 disabled:cursor-wait"
+              >
+                {status === 'sending' ? 'Wysyłanie...' : 'Wyślij Wiadomość'}
+              </button>
+              
+              {status === 'error' && (
+                <p className="text-red-500 text-sm mt-3">Wystąpił błąd podczas wysyłania. Spróbuj ponownie później.</p>
+              )}
+            </form>
+          )}
         </div>
       </section>
 
