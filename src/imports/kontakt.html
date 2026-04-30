@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt – Framework Studio</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     
     <style>
-        /* --- STYLE FRAMEWORK STUDIO --- */
+        /* --- STYLE Z KLASY KONTAKTOWEJ (dla pewności, że wygląd jest OK) --- */
         :root {
             --primary-color: #222;
             --accent-color: #c5a059; /* Złoty akcent */
@@ -16,46 +17,13 @@
             --transition: all 0.3s ease;
         }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            background-color: var(--bg-light);
-            color: var(--primary-color);
-        }
-
-        /* --- NAWIGACJA --- */
-        nav {
-            padding: 20px 5%;
-            display: flex;
-            justify-content: flex-end;
-            gap: 20px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--primary-color);
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--accent-color);
-        }
-
-        .nav-cta {
-            border: 1px solid var(--accent-color);
-            padding: 5px 15px;
-            border-radius: 4px;
-        }
-
         /* --- SEKCJA KONTAKT --- */
         .contact-section {
             padding: 80px 5%;
             max-width: 900px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
+            grid-template-columns: 1fr 1.5fr; /* Dane | Formularz */
             gap: 60px;
         }
 
@@ -67,7 +35,7 @@
             text-align: center;
         }
 
-        /* --- DANE KONTAKTOWE --- */
+        /* --- DANE KONTAKTOWE (LEWA KOLUMNA) --- */
         .contact-info h3 {
             font-size: 1.5rem;
             font-weight: 600;
@@ -88,7 +56,6 @@
             margin-bottom: 15px;
             font-size: 1rem;
             color: var(--primary-color);
-            line-height: 1.6;
         }
         
         .contact-info a {
@@ -108,18 +75,16 @@
         
         .social-icons a {
             display: inline-block;
-            margin-right: 10px;
-            font-size: 0.9rem;
+            margin-right: 15px;
+            font-size: 1.5rem;
             color: var(--primary-color);
-            text-decoration: none;
         }
 
-        /* --- FORMULARZ --- */
+        /* --- FORMULARZ (PRAWA KOLUMNA) --- */
         .contact-form {
             background: #f9f9f9;
             padding: 30px;
             border-radius: 5px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         
         .form-group {
@@ -130,20 +95,21 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .contact-form input, .contact-form textarea {
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
-            box-sizing: border-box;
             transition: border-color 0.3s;
+            box-sizing: border-box; /* Zabezpieczenie przed rozjeżdżaniem się szerokości */
         }
         
         .contact-form input:focus, .contact-form textarea:focus {
@@ -157,8 +123,8 @@
         }
 
         .contact-form button {
-            width: 100%;
-            padding: 15px;
+            display: inline-block;
+            padding: 12px 25px;
             background: var(--accent-color);
             color: white;
             border: none;
@@ -171,28 +137,49 @@
         }
 
         .contact-form button:hover {
-            background: #a8874f;
+            background: #a8874f; /* Ciemniejszy złoty */
         }
         
-        /* --- STOPKA --- */
+        /* --- STOPKA Z NAJPOPRAWNIEJSZYM FLEXBOXEM DLA KONTAKTU --- */
         footer {
             padding: 40px;
             font-size: 0.8rem;
             color: #999;
             border-top: 1px solid #eee;
             margin-top: 80px;
+
+            /* Kluczowe: Flexbox i Centrowanie */
             display: flex; 
             flex-direction: column;
             align-items: center; 
             text-align: center;
         }
 
-        .footer-year { display: block; margin-bottom: 5px; }
-        .footer-main-brand { font-weight: 700; font-size: 0.9rem; color: var(--primary-color); }
-        .footer-sub-brand { font-weight: 500; font-size: 0.65rem; letter-spacing: 3px; }
+        .footer-year {
+            display: block; 
+            margin-bottom: 5px;
+            color: var(--text-muted);
+        }
 
+        .footer-main-brand {
+            font-weight: 700;
+            font-size: 0.9rem; 
+            color: var(--primary-color); 
+        }
+
+        .footer-sub-brand {
+            font-weight: 500;
+            font-size: 0.65rem; 
+            letter-spacing: 3px; 
+            color: var(--text-muted); 
+        }
+        /* --- KONIEC DEDYKOWANYCH STYLÓW --- */
+
+        /* Responsywność */
         @media (max-width: 768px) {
-            .contact-section { grid-template-columns: 1fr; padding-top: 40px; }
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -210,10 +197,17 @@
 
     <div class="contact-info">
         <h3>Dane Kontaktowe</h3>
-        <p>Zazwyczaj odpowiadam w ciągu 24 godzin (pon-pt). Chętnie przygotuję dla Ciebie wycenę.</p>
+        <p>
+            Zazwyczaj odpowiadam w ciągu 24 godzin (od poniedziałku do piątku).
+            Chętnie porozmawiam o Twoim projekcie i przygotuję wycenę.
+        </p>
 
-        <p><strong>Telefon:</strong> <a href="tel:+48575996200">+48 575 996 200</a></p>
-        <p><strong>E-mail:</strong> <a href="mailto:antekku9@gmail.com">info@frameworkstudio.pl</a></p>
+        <p>
+            **Telefon:** <a href="tel:+48575996200">+48 575 996 200</a>
+        </p>
+        <p>
+            **E-mail:** <a href="mailto:antekku9@gmail.com">info@frameworkstudio.pl</a>
+        </p>
         
         <div class="social-icons">
             <h3>Social Media</h3>
@@ -224,17 +218,13 @@
     </div>
 
     <div class="contact-form">
-        <!-- FORMULARZ DO FORMSUBMIT.CO -->
+        <!-- ZMIANA: FormSubmit zamiast mailto -->
         <form action="https://formsubmit.co/info@frameworkstudio.pl" method="POST">
             
-            <!-- Honeypot anty-spam -->
+            <!-- Konfiguracja FormSubmit -->
             <input type="text" name="_honey" style="display:none">
-            
-            <!-- Brak Captcha -->
             <input type="hidden" name="_captcha" value="false">
-            
-            <!-- Temat maila -->
-            <input type="hidden" name="_subject" value="Nowa wiadomość ze strony Framework Studio">
+            <input type="hidden" name="_subject" value="Wiadomość z Framework Studio (FormSubmit)">
 
             <div class="form-group">
                 <label for="name">Imię i Nazwisko</label>
@@ -247,8 +237,8 @@
             </div>
             
             <div class="form-group">
-                <label for="topic">Temat</label>
-                <input type="text" id="topic" name="topic">
+                <label for="subject">Temat (np. Wycena, Współpraca)</label>
+                <input type="text" id="subject" name="topic">
             </div>
 
             <div class="form-group">
