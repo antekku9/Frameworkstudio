@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     
     <style>
-        /* --- STYLE Z KLASY KONTAKTOWEJ (dla pewności, że wygląd jest OK) --- */
+        /* --- STYLE Z KLASY KONTAKTOWEJ --- */
         :root {
             --primary-color: #222;
             --accent-color: #c5a059; /* Złoty akcent */
@@ -109,7 +109,7 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
             transition: border-color 0.3s;
-            box-sizing: border-box; /* Zabezpieczenie przed rozjeżdżaniem się szerokości */
+            box-sizing: border-box;
         }
         
         .contact-form input:focus, .contact-form textarea:focus {
@@ -137,18 +137,15 @@
         }
 
         .contact-form button:hover {
-            background: #a8874f; /* Ciemniejszy złoty */
+            background: #a8874f;
         }
         
-        /* --- STOPKA Z NAJPOPRAWNIEJSZYM FLEXBOXEM DLA KONTAKTU --- */
         footer {
             padding: 40px;
             font-size: 0.8rem;
             color: #999;
             border-top: 1px solid #eee;
             margin-top: 80px;
-
-            /* Kluczowe: Flexbox i Centrowanie */
             display: flex; 
             flex-direction: column;
             align-items: center; 
@@ -173,9 +170,7 @@
             letter-spacing: 3px; 
             color: var(--text-muted); 
         }
-        /* --- KONIEC DEDYKOWANYCH STYLÓW --- */
 
-        /* Responsywność */
         @media (max-width: 768px) {
             .contact-section {
                 grid-template-columns: 1fr;
@@ -203,10 +198,10 @@
         </p>
 
         <p>
-            **Telefon:** <a href="tel:+48575996200">+48 575 996 200</a>
+            <strong>Telefon:</strong> <a href="tel:+48575996200">+48 575 996 200</a>
         </p>
         <p>
-            **E-mail:** <a href="mailto:antekku9@gmail.com">info@frameworkstudio.pl</a>
+            <strong>E-mail:</strong> <a href="mailto:antekku9@gmail.com">antekku9@gmail.com</a>
         </p>
         
         <div class="social-icons">
@@ -218,10 +213,9 @@
     </div>
 
     <div class="contact-form">
-        <!-- ZMIANA: FormSubmit zamiast mailto -->
-        <form action="https://formsubmit.co/info@frameworkstudio.pl" method="POST">
+        <!-- POPRAWIONY ACTION: Pełny URL do FormSubmit -->
+        <form action="https://formsubmit.co/antekku9@gmail.com" method="POST">
             
-            <!-- Konfiguracja FormSubmit -->
             <input type="text" name="_honey" style="display:none">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_subject" value="Wiadomość z Framework Studio (FormSubmit)">
