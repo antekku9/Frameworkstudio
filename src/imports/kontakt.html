@@ -1,506 +1,74 @@
-<!DOCTYPE html>
-
-<html lang="pl">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Kontakt – Framework Studio</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
-
-    
-
-    <style>
-
-        /* --- STYLE Z KLASY KONTAKTOWEJ (dla pewności, że wygląd jest OK) --- */
-
-        :root {
-
-            --primary-color: #222;
-
-            --accent-color: #c5a059; /* Złoty akcent */
-
-            --bg-light: #fdfdfd;
-
-            --text-muted: #666;
-
-            --transition: all 0.3s ease;
-
-        }
-
-
-
-        /* --- SEKCJA KONTAKT --- */
-
-        .contact-section {
-
-            padding: 80px 5%;
-
-            max-width: 900px;
-
-            margin: 0 auto;
-
-            display: grid;
-
-            grid-template-columns: 1fr 1.5fr; /* Dane | Formularz */
-
-            gap: 60px;
-
-        }
-
-
-
-        .contact-section h2 {
-
-            font-size: 3rem;
-
-            font-weight: 700;
-
-            margin-bottom: 20px;
-
-            grid-column: 1 / -1; 
-
-            text-align: center;
-
-        }
-
-
-
-        /* --- DANE KONTAKTOWE (LEWA KOLUMNA) --- */
-
-        .contact-info h3 {
-
-            font-size: 1.5rem;
-
-            font-weight: 600;
-
-            margin-bottom: 20px;
-
-            position: relative;
-
-        }
-
+<div class="contact-form">
+    <!-- Usunęliśmy action i method stąd, zajmie się tym skrypt poniżej -->
+    <form id="frameworkForm">
         
+        <!-- Konfiguracja FormSubmit -->
+        <input type="text" name="_honey" style="display:none">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Nowa wiadomość z Framework Studio">
 
-        .contact-info h3::after {
-
-            content: '';
-
-            display: block;
-
-            width: 50px;
-
-            height: 3px;
-
-            background: var(--accent-color);
-
-            margin-top: 10px;
-
-        }
-
+        <div class="form-group">
+            <label for="name">Imię i Nazwisko</label>
+            <input type="text" id="name" name="name" required> 
+        </div>
         
-
-        .contact-info p {
-
-            margin-bottom: 15px;
-
-            font-size: 1rem;
-
-            color: var(--primary-color);
-
-        }
-
+        <div class="form-group">
+            <label for="email">Adres E-mail</label>
+            <input type="email" id="email" name="email" required>
+        </div>
         
-
-        .contact-info a {
-
-            color: var(--primary-color);
-
-            text-decoration: none;
-
-            font-weight: 500;
-
-            transition: var(--transition);
-
-        }
-
-        
-
-        .contact-info a:hover {
-
-            color: var(--accent-color);
-
-        }
-
-        
-
-        .social-icons {
-
-            margin-top: 30px;
-
-        }
-
-        
-
-        .social-icons a {
-
-            display: inline-block;
-
-            margin-right: 15px;
-
-            font-size: 1.5rem;
-
-            color: var(--primary-color);
-
-        }
-
-
-
-        /* --- FORMULARZ (PRAWA KOLUMNA) --- */
-
-        .contact-form {
-
-            background: #f9f9f9;
-
-            padding: 30px;
-
-            border-radius: 5px;
-
-        }
-
-        
-
-        .form-group {
-
-            margin-bottom: 20px;
-
-        }
-
-
-
-        .contact-form label {
-
-            display: block;
-
-            margin-bottom: 8px;
-
-            font-weight: 600;
-
-            font-size: 0.9rem;
-
-            text-transform: uppercase;
-
-        }
-
-
-
-        .contact-form input[type="text"],
-
-        .contact-form input[type="email"],
-
-        .contact-form textarea {
-
-            width: 100%;
-
-            padding: 12px;
-
-            border: 1px solid #ddd;
-
-            border-radius: 4px;
-
-            font-family: 'Montserrat', sans-serif;
-
-            font-size: 0.9rem;
-
-            transition: border-color 0.3s;
-
-        }
-
-        
-
-        .contact-form input:focus, .contact-form textarea:focus {
-
-            border-color: var(--accent-color);
-
-            outline: none;
-
-        }
-
-
-
-        .contact-form textarea {
-
-            resize: vertical;
-
-            min-height: 150px;
-
-        }
-
-
-
-        .contact-form button {
-
-            display: inline-block;
-
-            padding: 12px 25px;
-
-            background: var(--accent-color);
-
-            color: white;
-
-            border: none;
-
-            border-radius: 4px;
-
-            cursor: pointer;
-
-            font-weight: 700;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-
-            transition: var(--transition);
-
-        }
-
-
-
-        .contact-form button:hover {
-
-            background: #a8874f; /* Ciemniejszy złoty */
-
-        }
-
-        
-
-        /* --- STOPKA Z NAJPOPRAWNIEJSZYM FLEXBOXEM DLA KONTAKTU --- */
-
-        footer {
-
-            padding: 40px;
-
-            font-size: 0.8rem;
-
-            color: #999;
-
-            border-top: 1px solid #eee;
-
-            margin-top: 80px;
-
-
-
-            /* Kluczowe: Flexbox i Centrowanie */
-
-            display: flex; 
-
-            flex-direction: column;
-
-            align-items: center; 
-
-            text-align: center;
-
-        }
-
-
-
-        .footer-year {
-
-            display: block; 
-
-            margin-bottom: 5px;
-
-            color: var(--text-muted);
-
-        }
-
-
-
-        .footer-main-brand {
-
-            font-weight: 700;
-
-            font-size: 0.9rem; 
-
-            color: var(--primary-color); 
-
-        }
-
-
-
-        .footer-sub-brand {
-
-            font-weight: 500;
-
-            font-size: 0.65rem; 
-
-            letter-spacing: 3px; 
-
-            color: var(--text-muted); 
-
-        }
-
-        /* --- KONIEC DEDYKOWANYCH STYLÓW --- */
-
-
-
-        /* Responsywność */
-
-        @media (max-width: 768px) {
-
-            .contact-section {
-
-                grid-template-columns: 1fr;
-
-            }
-
-        }
-
-    </style>
-
-</head>
-
-<body>
-
-
-
-<nav>
-
-    <a href="portfolio.html">Portfolio</a>
-
-    <a href="oferta.html">Oferta</a>
-
-    <a href="index.html">O mnie</a>
-
-    <a href="kontakt.html" class="nav-cta active">Kontakt</a>
-
-</nav>
-
-
-
-<section class="contact-section">
-
-    <h2>Napisz do mnie</h2>
-
-
-
-    <div class="contact-info">
-
-        <h3>Dane Kontaktowe</h3>
-
-        <p>
-
-            Zazwyczaj odpowiadam w ciągu 24 godzin (od poniedziałku do piątku).
-
-            Chętnie porozmawiam o Twoim projekcie i przygotuję wycenę.
-
-        </p>
-
-
-
-        <p>
-
-            **Telefon:** <a href="tel:+48123456789">+48 123 456 789</a>
-
-        </p>
-
-        <p>
-
-            **E-mail:** <a href="mailto:info@frameworkstudio.pl">info@frameworkstudio.pl</a>
-
-        </p>
-
-        
-
-        <div class="social-icons">
-
-            <h3>Social Media</h3>
-
-            <a href="https://www.instagram.com/frameworkstudio/" target="_blank">Instagram</a> | 
-
-            <a href="https://www.linkedin.com/in/antoni-kuran/" target="_blank">LinkedIn</a> |
-
-            <a href="https://www.facebook.com/frameworkstudio/" target="_blank">Facebook</a>
-
+        <div class="form-group">
+            <label for="subject">Temat</label>
+            <input type="text" id="subject" name="topic" placeholder="np. Wycena, Współpraca">
         </div>
 
+        <div class="form-group">
+            <label for="message">Treść Wiadomości</label>
+            <textarea id="message" name="message" required></textarea>
+        </div>
+        
+        <button type="submit" id="submitBtn">Wyślij Wiadomość</button>
+    </form>
+
+    <!-- Komunikat sukcesu (domyślnie ukryty) -->
+    <div id="successMsg" style="display:none; color: green; font-weight: bold; margin-top: 20px; text-align: center;">
+        ✅ Dziękujemy! Wiadomość została wysłana.
     </div>
+</div>
 
+<script>
+    const form = document.getElementById('frameworkForm');
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('successMsg');
 
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Zatrzymuje przeładowanie strony i błąd 404
+        btn.disabled = true;
+        btn.innerText = 'Wysyłanie...';
 
-    <div class="contact-form">
+        const formData = new FormData(form);
 
-        <form action="mailto:info@frameworkstudio.pl?subject=Wiadomość z Framework Studio" method="POST" enctype="text/plain">
+        try {
+            const response = await fetch('https://formsubmit.co/ajax/antekku9@gmail.com', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
 
-            <div class="form-group">
-
-                <label for="name">Imię i Nazwisko</label>
-
-                <input type="text" id="name" name="Imię" required> 
-
-            </div>
-
-            
-
-            <div class="form-group">
-
-                <label for="email">Adres E-mail</label>
-
-                <input type="email" id="email" name="E-mail" required>
-
-            </div>
-
-            
-
-            <div class="form-group">
-
-                <label for="subject">Temat (np. Wycena, Współpraca)</label>
-
-                <input type="text" id="subject" name="Temat">
-
-            </div>
-
-
-
-            <div class="form-group">
-
-                <label for="message">Treść Wiadomości</label>
-
-                <textarea id="message" name="Treść" required></textarea>
-
-            </div>
-
-            
-
-            <button type="submit">Wyślij Wiadomość</button>
-
-        </form>
-
-    </div>
-
-</section>
-
-
-
-<footer>
-
-    <span class="footer-year">© 2025</span>
-
-    <span class="footer-main-brand">FRAMEWORK</span>
-
-    <span class="footer-sub-brand">STUDIO</span>
-
-</footer>
-
-
-
-</body>
-
-</html>
-
+            if (response.ok) {
+                form.style.display = 'none'; // Ukrywa formularz
+                msg.style.display = 'block'; // Pokazuje sukces
+            } else {
+                alert('Wystąpił błąd. Spróbuj ponownie później.');
+                btn.disabled = false;
+                btn.innerText = 'Wyślij Wiadomość';
+            }
+        } catch (error) {
+            alert('Błąd połączenia. Sprawdź internet.');
+            btn.disabled = false;
+            btn.innerText = 'Wyślij Wiadomość';
+        }
+    });
+</script>
